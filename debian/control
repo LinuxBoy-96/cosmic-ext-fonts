@@ -1,0 +1,45 @@
+Source: cosmic-ext-fonts
+Section: utils
+Priority: optional
+Maintainer: Hugo Fortin <hugoo4705@gmail.com>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ cargo,
+ rustc (>= 1.93),
+ pkg-config,
+ libwayland-dev,
+ libxkbcommon-dev,
+ fonts-dejavu-core,
+Standards-Version: 4.7.0
+Homepage: https://github.com/LinuxBoy-96/cosmic-ext-fonts
+Vcs-Git: https://github.com/LinuxBoy-96/cosmic-ext-fonts.git
+Vcs-Browser: https://github.com/LinuxBoy-96/cosmic-ext-fonts
+
+Package: cosmic-ext-fonts
+Architecture: amd64 arm64 riscv64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ hicolor-icon-theme,
+ libwayland-client0,
+ libxkbcommon0,
+ xdg-desktop-portal,
+Recommends:
+ xdg-desktop-portal-cosmic,
+Suggests:
+ cosmic-session,
+Description: font manager for the COSMIC desktop
+ Fonts browses the fonts installed on the system grouped by family,
+ previews any variant in a size waterfall, opens a downloaded font file
+ and installs it with one click, removes user-installed fonts, and pulls
+ new families from the Google Fonts catalog.
+ .
+ Installs go to the user's font directory only; system fonts stay under
+ the control of the package manager. Every install is verified after
+ copying and duplicates are detected by the font's identity, not its
+ file name.
+ .
+ Warning: the catalog is downloaded over HTTPS with rustls and the pure-Rust
+ RustCrypto provider, which has not been audited. The app sends no
+ credential and checks every downloaded font like a local file.

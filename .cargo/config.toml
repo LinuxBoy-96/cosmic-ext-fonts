@@ -1,0 +1,14 @@
+# Dynamic glibc: winit dlopens libwayland-client and the toolkit links libxkbcommon, so no
+# static linking. `cargo build` targets the host; the aliases cross-build and
+# need gcc-aarch64-linux-gnu and gcc-riscv64-linux-gnu.
+
+[alias]
+build-x86_64  = "build --release --target x86_64-unknown-linux-gnu"
+build-arm64   = "build --release --target aarch64-unknown-linux-gnu"
+build-riscv64 = "build --release --target riscv64gc-unknown-linux-gnu"
+
+[target.aarch64-unknown-linux-gnu]
+linker = "aarch64-linux-gnu-gcc"
+
+[target.riscv64gc-unknown-linux-gnu]
+linker = "riscv64-linux-gnu-gcc"

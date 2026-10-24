@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a5568"/>
+      <stop offset="1" stop-color="#2d3748"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="42" x2="0" y2="92">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded tile, COSMIC-style -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bg)"/>
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="2"/>
+  <!-- A typeface specimen: a large serif A and a small sans a. They are shapes, not text: a text is
+       drawn with the fonts the renderer finds, so the icon would change from one desktop to the
+       next, and with none (the icon of the window is drawn so) the tile would be empty. -->
+  <path fill="url(#ink)" d="M20 92 41 42 49 42 70 92 58 92 51.9 77.5 32.6 77.5 26.5 92ZM42.2 54.5 34.9 72 49.6 72ZM14.8 89h17v3h-17ZM55.5 89h17v3h-17ZM33.5 42h7.5v3h-7.5Z"/>
+  <circle cx="91" cy="80.8" r="9.5" fill="none" stroke="#63b3ed" stroke-width="4.4"/>
+  <rect x="98.1" y="69.6" width="4.6" height="22.4" fill="#63b3ed"/>
+  <!-- Baseline -->
+  <rect x="26" y="98" width="76" height="3" rx="1.5" fill="#ffffff" fill-opacity=".35"/>
+</svg>

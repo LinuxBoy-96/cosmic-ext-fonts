@@ -1,0 +1,22 @@
+Building the package
+====================
+
+libcosmic and its dependencies aren't in Debian, so the package builds offline
+from a vendor tree. Create it once, with network:
+
+    cargo vendor debian/vendor
+
+debian/rules points cargo at it with --config debian/cargo-vendor.toml. If
+cargo vendor prints a different [source.*] block (a git source changed in
+Cargo.lock), update that file. The vendor tree is large and not committed.
+
+Then:
+
+    dpkg-buildpackage -us -uc -b
+
+libwayland-client0 is loaded with dlopen, so it is listed by hand in Depends.
+The app is Wayland only and draws on the CPU, so it needs no X11 or GPU
+libraries. The file chooser and the About page's links go through
+xdg-desktop-portal (Depends), with xdg-desktop-portal-cosmic on COSMIC
+(Recommends). No fc-cache is needed: fontconfig notices new files by the
+directory's mtime.

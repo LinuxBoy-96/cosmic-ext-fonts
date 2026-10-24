@@ -1,0 +1,66 @@
+# Points every source of Cargo.lock at debian/vendor (made by `cargo vendor debian/vendor`).
+# debian/rules passes it with `--config`. Update it when Cargo.lock changes a git source:
+# `cargo vendor` prints the block.
+
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/RustCrypto/rustls-rustcrypto.git?rev=70f76c039e587192688af18a80d5d6435dedaf22"]
+git = "https://github.com/RustCrypto/rustls-rustcrypto.git"
+rev = "70f76c039e587192688af18a80d5d6435dedaf22"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a"]
+git = "https://github.com/iced-rs/cryoglyph.git"
+rev = "e429a025df36ab8145708acb309080ae3deec17a"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/jackpot51/rust-atomicwrites"]
+git = "https://github.com/jackpot51/rust-atomicwrites"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/cosmic-protocols?rev=32283d7"]
+git = "https://github.com/pop-os/cosmic-protocols"
+rev = "32283d7"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/dbus-settings-bindings"]
+git = "https://github.com/pop-os/dbus-settings-bindings"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/freedesktop-icons"]
+git = "https://github.com/pop-os/freedesktop-icons"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/libcosmic.git?rev=c003a58fff660f5c55ebfb54a5908722fa7d1d6e"]
+git = "https://github.com/pop-os/libcosmic.git"
+rev = "c003a58fff660f5c55ebfb54a5908722fa7d1d6e"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/smithay-clipboard?tag=sctk-0.20"]
+git = "https://github.com/pop-os/smithay-clipboard"
+tag = "sctk-0.20"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0"]
+git = "https://github.com/pop-os/softbuffer"
+tag = "cosmic-4.0"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20"]
+git = "https://github.com/pop-os/window_clipboard.git"
+tag = "sctk-0.20"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/pop-os/winit.git?tag=cosmic-0.14"]
+git = "https://github.com/pop-os/winit.git"
+tag = "cosmic-0.14"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/wash2/accesskit?tag=cosmic-0.14"]
+git = "https://github.com/wash2/accesskit"
+tag = "cosmic-0.14"
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "debian/vendor"

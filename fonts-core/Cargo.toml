@@ -1,0 +1,30 @@
+[package]
+name = "fonts-core"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "GPL-3.0-or-later"
+description = "Font inventory, installation and watching logic for cosmic-ext-fonts"
+
+[dependencies]
+dirs = "7"
+fontdb = "0.24"
+notify = "8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tempfile = "3"
+thiserror = "2"
+# HTTPS without C: rustls with the RustCrypto provider below, never `ring` or `aws-lc`.
+# ureq's `rustls` feature would pull in ring, so we use `rustls-no-provider` and set the
+# provider ourselves.
+ureq = { version = "3", default-features = false, features = ["gzip", "rustls-no-provider", "rustls-webpki-roots"] }
+# Upstream says "DO NOT USE THIS IN PRODUCTION" (not every suite, no audit or FIPS); the
+# README's catalog section explains why it's fine here, and `catalog::tests` covers it.
+# Pinned: no release since 2024. To use a vetted provider instead, enable ureq's `rustls`
+# feature (ring) and drop the provider in `catalog::tls_config` and the purity checks
+# (`just pure`, `the_tls_stack_stays_pure_rust`).
+rustls-rustcrypto = { git = "https://github.com/RustCrypto/rustls-rustcrypto.git", rev = "70f76c039e587192688af18a80d5d6435dedaf22" }
+
+[dev-dependencies]
+# The test server: the same rustls ureq already uses, no extra provider.
+rustls = { version = "0.23", default-features = false, features = ["std", "tls12"] }

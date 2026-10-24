@@ -1,0 +1,6 @@
+cosmic-ext-fonts (0.1.0) unstable; urgency=medium
+
+  * Initial release: browse, preview, install and remove fonts;
+    Google Fonts catalog; seven languages.
+
+ -- Hugo Fortin <hugoo4705@gmail.com>  Sat, 03 Oct 2026 20:30:00 -0400

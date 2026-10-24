@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+# Plain cargo build (the crates aren't in the archive, so no dh-cargo), offline from a
+# vendor tree: see debian/README.source.
+
+export CARGO_HOME = $(CURDIR)/debian/cargo_home
+export CARGO_TERM_COLOR = never
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cargo build --release --locked --offline --workspace --config debian/cargo-vendor.toml
+
+override_dh_auto_test:
+	cargo test --release --locked --offline -p fonts-core --config debian/cargo-vendor.toml
+
+override_dh_auto_install:
+	install -Dm0755 target/release/cosmic-ext-fonts \
+	    debian/cosmic-ext-fonts/usr/bin/cosmic-ext-fonts
+	install -Dm0644 res/app.desktop \
+	    debian/cosmic-ext-fonts/usr/share/applications/io.github.linuxboy_96.cosmic-ext-fonts.desktop
+	install -Dm0644 res/metainfo.xml \
+	    debian/cosmic-ext-fonts/usr/share/metainfo/io.github.linuxboy_96.cosmic-ext-fonts.metainfo.xml
+	install -Dm0644 res/icons/hicolor/scalable/apps/io.github.linuxboy_96.cosmic-ext-fonts.svg \
+	    debian/cosmic-ext-fonts/usr/share/icons/hicolor/scalable/apps/io.github.linuxboy_96.cosmic-ext-fonts.svg
+
+override_dh_auto_clean:
+	cargo clean
+	rm -rf debian/cargo_home
